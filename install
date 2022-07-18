@@ -1,1 +1,29 @@
 #!/bin/bash
+
+#Install script for PocketKnife.
+
+#STEP: Performing a system update
+echo "Performing a system update"
+#For now this only works with debian based systems but in the future I am looking to expand this since I enjoy using Black Arch
+sudo apt update && sudo apt upgrade -y
+
+#STEP: Searching for dependencies
+echo "Searching for dependencies"
+
+grep -A 1000 TOOLS tools_list | grep -v TOOLS | \
+while
+  IFS= read -r LINE;
+  do
+    command -v $LINE >/dev/null 2>&1 || { echo >&2 "\e[31m $LINE NOT installed. \e[39m";} && { echo >&1 "\e[32m $LINE is installed\e[39m";}; done
+
+
+grep -A 1000 TOOLS tools_list | grep -v TOOLS | while IFS= read -r LINE; do command -v $LINE >/dev/null 2>&1 || {echo $LINE} && {echo >&2 $LINE }; done
+    
+    
+    
+   
+   
+grep -A 1000 TOOLS tools_list | grep -v TOOLS | while IFS= read -r LINE; do LINE2=`echo >&2 $LINE`if [[ "$LINE" == "$LINE2" ]]; then echo "TRUE"; else echo "FALSE"; fi ; done;
+
+grep -A 1000 TOOLS tools_list | grep -v TOOLS | while IFS= read -r LINE; do command -v $LINE >/dev/null 2>&1 || LINE2=`echo >&2 $LINE` && {echo $LINE} && {echo $LINE2} && if [[ "$LINE" == "$LINE2" ]]; then echo "TRUE"; else echo "FALSE"; fi ; done;
+
